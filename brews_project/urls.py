@@ -20,5 +20,5 @@ from django.urls import path, include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("api/v1/brews/", include("brews.urls")),
-    path('api-auth/', include('rest_framework.urls')),  # Adds login to the browsable API
+    # path('api-auth/', include('rest_framework.urls')),  # Adds login to the browsable API
 ]
