@@ -1,10 +1,10 @@
 # LAB - Class 32
 
-## Project: Django REST Framework & Docker
+## Project: Permissions & Postgresql
 
 ### Project Description
 
-Fully functional CRUD API app that allows users to view the collection of brews (GET), as well as Create, Update, and Delete brews from the collection. Users are required to be authenticated to access the API. The app utilizes a postgres database and is run in Docker container.
+Fully functional CRUD API app that allows users to view the collection of brews (GET), as well as Create, Update, and Delete brews from the collection. Permission class is added, requiring users to be logged in to access the API. The app utilizes a Postgres Database and is run in Docker container.
 
 ### Author: Rhett Chase
 
