@@ -4,7 +4,7 @@
 
 ### Project Description
 
-Fully functional CRUD API app that allows users to view the collection of brews (GET), as well as Create, Update, and Delete brews from the collection.
+Fully functional CRUD API app that allows users to view the collection of brews (GET), as well as Create, Update, and Delete brews from the collection. Users are required to be authenticated to access the API.
 
 ### Author: Rhett Chase
 
@@ -13,7 +13,8 @@ Fully functional CRUD API app that allows users to view the collection of brews 
 <!-- - [back-end server url](https://capital-finder-rhett-chase.vercel.app/api) -->
 <!-- - [front-end application](http://xyz.com/) (when applicable) -->
 - chatGPT
-- [Beginners Guide to Docker](https://wsvincent.com/beginners-guide-to-docker/)
+- [Django, Docker, and PostgreSQL Tutorial](https://learndjango.com/tutorials/django-docker-and-postgresql-tutorial)
+- [Django REST Framework - Permissions](https://www.django-rest-framework.org/api-guide/permissions/#custom-permissions)
 
 ### Setup
 
@@ -33,12 +34,19 @@ Fully functional CRUD API app that allows users to view the collection of brews 
 
 - Clone repo
 - Install dependencies (see above)
-- See the page in browser by running `docker-compose up`
+- See the page in browser by running `docker-compose up --build`
 - Open the page in the localhost specified in the terminal to view GET request and add `/api/v1/brews` to end of url
+- Create superuser: `docker compose exec web python manage.py createsuperuser`
+  - From admin panel you can also create new users (make them a Staff account to have access to admin panel)
 
 #### How to use your library (where applicable)
 
-Once server is running, use Thunder Bird or other application of your choice to complete GET, PUT, POST, DELETE Requests. GET requests also can be completed in the browser.
+Once server is running, use Thunder Client or other application of your choice to complete GET, PUT, POST, DELETE Requests. GET requests also can be completed in the browser.
+
+*Must be logged in to access the API*
+
+- Login with superuser or staff user credentails at [`http://0.0.0.0:8000/admin/`](http://0.0.0.0:8000/admin/)
+- Or authenticate in the `Auth` panel using Thunder Client or other comparable app
 
 ##### GET Requests (Read)
 
@@ -46,7 +54,7 @@ Once server is running, use Thunder Bird or other application of your choice to 
 
 ##### POST Requests (Add)
 
-- User Thunder Client to add JSON body, OR go to bottom of page [`http://0.0.0.0:8000/api/v1/brews/`](http://0.0.0.0:8000/api/v1/brews/)
+- User Thunder Client to add `body` > `JSON`, OR go to bottom of page [`http://0.0.0.0:8000/api/v1/brews/`](http://0.0.0.0:8000/api/v1/brews/)
 
 ```json
 {
@@ -62,10 +70,12 @@ Once server is running, use Thunder Bird or other application of your choice to 
 
 - [`http://0.0.0.0:8000/api/v1/brews/{id}/`](http://0.0.0.0:8000/api/v1/brews/2/)
 - edit JSON body (see example above)
+- Permissions required: only the user that created the specific brew may update it
 
 ##### DELETE Requests
 
 - [`http://0.0.0.0:8000/api/v1/brews/{id}/`](http://0.0.0.0:8000/api/v1/brews/2/)
+- Permissions required: only the user that created the specific brew may update it
 
 #### Tests
 
