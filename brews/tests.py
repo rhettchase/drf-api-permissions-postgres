@@ -12,20 +12,23 @@ from .models import Brew
 class BrewTests(APITestCase):
     @classmethod
     def setUpTestData(cls):
-        testuser1 = get_user_model().objects.create_user(
+        cls.testuser1 = get_user_model().objects.create_user(
             username="testuser1", password="pass"
         )
-        testuser1.save()
+        cls.testuser1.save()
 
         test_brew = Brew.objects.create(
-            owner=testuser1,
+            owner=cls.testuser1,
             name="Pale Ale",
             brew_type="PA",
             brewery="Sierra Nevada",
             description="Like Pale Ale, hopped to perfection and unshakable.",
         )
-        
         test_brew.save()
+
+    def setUp(self):
+        # Log in testuser1 before each test
+        self.client.force_authenticate(user=self.testuser1)
 
     def test_brews_model(self):
         brew = Brew.objects.get(id=1)
@@ -66,7 +69,7 @@ class BrewTests(APITestCase):
             "brewery": "Stone",
             "description": "the best hops"
             }
-        response = self.client.post(url, data)
+        response = self.client.post(url, data, format="json")
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
         brews = Brew.objects.all()
         self.assertEqual(len(brews), 2)

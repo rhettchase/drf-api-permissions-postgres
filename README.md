@@ -4,7 +4,7 @@
 
 ### Project Description
 
-Fully functional CRUD API app that allows users to view the collection of brews (GET), as well as Create, Update, and Delete brews from the collection. Users are required to be authenticated to access the API.
+Fully functional CRUD API app that allows users to view the collection of brews (GET), as well as Create, Update, and Delete brews from the collection. Users are required to be authenticated to access the API. The app utilizes a postgres database and is run in Docker container.
 
 ### Author: Rhett Chase
 
@@ -79,4 +79,4 @@ Once server is running, use Thunder Client or other application of your choice t
 
 #### Tests
 
-- `python manage.py test`
+- `docker compose run web python manage.py test`
